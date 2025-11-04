@@ -14,24 +14,37 @@ Instruções:
 💡 Dica: não use bibliotecas externas como numpy ou statistics.
 """
 
+import numpy as np
+
+
 # Função para calcular a média
 def calcular_media(lista):
-    # TODO: implementar a soma dos elementos e dividir pelo tamanho da lista
-    pass
+    return sum(lista) / len(lista)
 
 
 # Função para calcular a mediana
 def calcular_mediana(lista):
-    # TODO: ordenar a lista e encontrar o elemento do meio
-    # 💡 Dica: se o tamanho for par, tire a média dos dois elementos centrais
-    pass
+    if not lista:
+        raise ValueError("A lista está vazia")
+    sorted_list = sorted(lista)
+    n = len(sorted_list)
+    mid = n // 2
+    if n % 2 == 1:
+        return sorted_list[mid]
+    else:
+        return (sorted_list[mid - 1] + sorted_list[mid]) / 2
 
 
 # Função para calcular a moda
 def calcular_moda(lista):
-    # TODO: encontrar o valor que mais aparece
-    # 💡 Dica: use um dicionário para contar as ocorrências
-    pass
+    if not lista:
+        raise ValueError("A lista está vazia")
+    counts = {}
+    for v in lista:
+        counts[v] = counts.get(v, 0) + 1
+    max_count = max(counts.values())
+    modos = [k for k, c in counts.items() if c == max_count]
+    return modos[0] if len(modos) == 1 else modos
 
 
 def main():
